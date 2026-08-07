@@ -43,7 +43,7 @@ export default function TabLayout() {
                 borderRadius: tabBar.radius,
                 backgroundColor: "#fff",
                 borderTopWidth: 0,
-                elevation: 0
+                elevation: 2
             },
             tabBarItemStyle: {
                 paddingVertical: tabBar.height / 2 - tabBar.iconFrame / 1.6

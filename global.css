@@ -62,7 +62,7 @@
     }
 
     .tabs-active {
-        @apply bg-accent;
+        @apply bg-gray-300;
     }
 
     .tabs-glyph {

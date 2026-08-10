@@ -1,5 +1,5 @@
+import { useSupabase } from "@/hooks/useSupabase";
 import { useUserStore } from "@/store/userStore";
-import { useSupabase } from "@/store/useSupabase";
 import { useUser } from "@clerk/expo";
 import { useEffect } from "react";
 

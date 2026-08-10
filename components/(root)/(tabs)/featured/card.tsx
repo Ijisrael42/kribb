@@ -1,11 +1,16 @@
 import { formatPrice } from '@/lib/utils'
 import { Property } from '@/types'
 import { Ionicons } from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
+import React, { memo } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 
-const FeaturedCard = ({ property }: { property: Property }) => {
+const FeaturedCard = memo(({ property }: { property: Property }) => {
+    const router = useRouter();
+
     return (
         <TouchableOpacity
+            onPress={() => router.push(`/property/${property.id}`)}
             className='w-72 mr-2 rounded-3xl overflow-hidden bg-white'
             style={{
                 shadowColor: "#000",
@@ -75,10 +80,10 @@ const FeaturedCard = ({ property }: { property: Property }) => {
 
             </View>
 
-
-
         </TouchableOpacity>
     )
-}
+});
 
-export default FeaturedCard
+FeaturedCard.displayName = 'FeaturedCard';
+
+export default FeaturedCard;

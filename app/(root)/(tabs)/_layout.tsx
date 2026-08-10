@@ -69,6 +69,13 @@ export default function TabLayout() {
                 }}
             />
             <Tabs.Screen
+                name="create"
+                options={{
+                    title: 'Add Property',
+                    tabBarIcon: ({ focused, color }) => <TabIcon focused={focused} name="plus-circle" color={color} />,
+                }}
+            />
+            <Tabs.Screen
                 name="saved"
                 options={{
                     title: 'Saved',

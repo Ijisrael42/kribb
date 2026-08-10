@@ -1,8 +1,15 @@
-import { Property } from '@/types/index'
-import { ActivityIndicator, FlatList, Text, View } from 'react-native'
-import FeaturedCard from './card'
+import { Property } from '@/types/index';
+import React, { memo, useCallback } from 'react';
+import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import FeaturedCard from './card';
 
 const Featured = ({ loading, featured }: { loading: boolean, featured: Property[] }) => {
+    const renderItem = useCallback(({ item }: { item: Property }) => (
+        <FeaturedCard property={item} />
+    ), []);
+
+    const keyExtractor = useCallback((item: Property) => item.id, []);
+
     return (
         <View className='mb-6'>
             <Text className='px-5 font-bold text-gray-900 text-lg mb-4'>
@@ -18,17 +25,18 @@ const Featured = ({ loading, featured }: { loading: boolean, featured: Property[
             ) : (
                 <FlatList
                     data={featured}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={keyExtractor}
                     contentContainerStyle={{ padding: 20 }}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({ item }) => (
-                        <FeaturedCard property={item} />
-                    )}
+                    renderItem={renderItem}
+                    initialNumToRender={3}
+                    maxToRenderPerBatch={3}
+                    windowSize={3}
                 />
             )}
         </View>
     )
 }
 
-export default Featured
+export default memo(Featured);

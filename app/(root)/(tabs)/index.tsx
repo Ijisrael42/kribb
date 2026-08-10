@@ -56,13 +56,25 @@ const HomeScreen = () => {
         }, [])
     );
 
+    const renderItem = useCallback(({ item }: { item: Property }) => (
+        <View className='px-5'>
+            <PropertyCard property={item} />
+        </View>
+    ), []);
+
+    const keyExtractor = useCallback((item: Property) => item.id, []);
+
     return (
         <SafeAreaView className='flex-1 bg-gray-50'>
             <FlatList
                 data={recommended}
-                keyExtractor={(item) => item.id}
+                keyExtractor={keyExtractor}
                 contentContainerStyle={{ paddingBottom: 100 }}
                 showsVerticalScrollIndicator={false}
+                initialNumToRender={5}
+                maxToRenderPerBatch={5}
+                windowSize={5}
+                removeClippedSubviews
                 ListHeaderComponent={
                     <View>
 
@@ -81,11 +93,7 @@ const HomeScreen = () => {
                         </Text>
                     </View>
                 }
-                renderItem={({ item }) => (
-                    <View className='px-5'>
-                        <PropertyCard property={item} />
-                    </View>
-                )}
+                renderItem={renderItem}
                 ListEmptyComponent={
                     !loading ?
                         <View className='items-center py-10'>

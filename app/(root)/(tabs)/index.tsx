@@ -5,7 +5,7 @@ import SearchBar from '@/components/(root)/(tabs)/search-bar';
 import { supabase } from '@/lib/supabase';
 import { Property } from '@/types';
 import { useUser } from '@clerk/expo';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useFocusEffect } from 'expo-router';
 import { styled } from "nativewind";
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
@@ -15,7 +15,6 @@ const SafeAreaView = styled(RNSafeAreaView);
 
 const HomeScreen = () => {
     const { user } = useUser();
-    const router = useRouter();
 
     const [featured, setFeatured] = useState<Property[]>([]);
     const [recommended, setRecommended] = useState<Property[]>([]);

@@ -1,4 +1,3 @@
-
 export interface Property {
     id: string;
     title: string;
@@ -22,4 +21,10 @@ export interface TabIconProps {
     focused: boolean;
     name: any;
     color: string;
+}
+
+export interface SavedProperty {
+    id: string;
+    property_id: string;
+    properties: Property;
 }

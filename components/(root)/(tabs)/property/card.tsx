@@ -1,3 +1,4 @@
+import { useSavedProperty } from '@/hooks/useSavedProperty'
 import { formatPrice } from '@/lib/utils'
 import { Property } from '@/types'
 import { Ionicons } from '@expo/vector-icons'
@@ -6,15 +7,13 @@ import React, { memo } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 
 const PropertyCard = memo((
-    { property, onUnsave, showSave }:
-        {
-            property: Property,
-            onUnsave?: () => void,
-            showSave?: boolean
-        }
+    { property, onUnsave }: {
+        property: Property,
+        onUnsave?: () => void,
+    }
 ) => {
-    const isSaved = true;
     const router = useRouter();
+    const { isSaved, saveLoading, toggleSave } = useSavedProperty({ propertyId: property.id, onUnsave });
 
     return (
         <TouchableOpacity
@@ -57,7 +56,10 @@ const PropertyCard = memo((
                         </View>
                     </View>
 
-                    <TouchableOpacity className='w-10 items-end'>
+                    <TouchableOpacity
+                        onPress={toggleSave}
+                        disabled={saveLoading}
+                        className='w-10 items-end'>
                         <Ionicons
                             name={`heart${isSaved ? "" : "-outline"}`}
                             size={18}

@@ -28,6 +28,13 @@
     "plugins": [
       "expo-router",
       [
+        "expo-location",
+        {
+          "locationWhenInUseUsageDescription": "Kribb needs your location to find nearby properties.",
+          "locationAlwaysUsageDescription": "Kribb needs your location to find nearby properties.",
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
